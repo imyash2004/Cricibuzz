@@ -1,0 +1,39 @@
+<div>
+  @if (rankhead) {
+
+  <h1 class="px-3 py-2 text-4xl">Odi rankings</h1>
+
+  <table class="mt-2 shadow rounded min-w-full bg-white border border-gray-300">
+    <thead>
+      <tr>
+        @for (heading of rankhead; track $index) {
+        <th class="px-0">{{ heading }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (team of odiRank ; track $index) {
+      <tr
+        class="cursor-pointer hover:bg-blue-500 hover:text-white transition-all"
+        [ngClass]="{
+          'bg-green-100 text-black': $index <= 4,
+          'bg-red-100 text-black': $index > 4
+        }"
+      >
+        @if($index>0){ @for (item of team; track $index) {
+        <td
+          [ngClass]="{
+            'font-bold': $index == 0
+          }"
+          class="py-2 px-20 border-b"
+        >
+          {{ item }}
+        </td>
+        }}
+      </tr>
+      }
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+  }
+</div>
